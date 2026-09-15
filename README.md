@@ -21,7 +21,7 @@ The seven signals handled are `ad_storage`, `ad_user_data`, `ad_personalization`
 1. In your GTM web container open **Templates › Tag Templates › Search Gallery** and search for **Jumpdot Consent Mode** (by Jumpdot). Click **Add to workspace** and accept the permissions.
 2. **Tags › New**, choose the *Jumpdot Consent Mode* tag type.
 3. Fill in **Jumpdot Client ID** with the id shown in your Jumpdot console (*Settings › Installation*).
-4. Review the **Default consent state** table (see below). The default row denies everything except `security_storage`, which is the recommended starting point.
+4. Leave the **Default consent state** table empty unless you need region-specific defaults: with no rows the tag denies everything except `security_storage` for all regions, which is the recommended starting point.
 5. Trigger: **Consent Initialization – All Pages**. Do not use *All Pages* or *Initialization*; only the Consent Initialization trigger runs before every other tag.
 6. Make sure no other tag or inline `gtag('consent', 'default', …)` sets Consent Mode defaults.
 7. **Remove the Jumpdot script line from your pages.** With the template installed the page must not also carry `<script async src="https://jumpdot.cl/cmp.js"></script>`: the template injects the SDK itself and tells it that the tag owns Consent Mode. The `window.JumpdotCMPConfig = { … }` block from the Jumpdot installation snippet may stay (the template reuses it and forces `clientId` and `consentModeEmit: false`). If the script line is still there when the tag fires, the template does not load the SDK twice and calls `JumpdotCMP.setConsentModeEmit(false)` so the SDK stops pushing its own consent commands, but you lose the guarantee that the defaults run before the SDK.
@@ -34,7 +34,7 @@ Google tags (GA4, Google Ads, Floodlight) need no change: they read Consent Mode
 | Field | Default | Meaning |
 | --- | --- | --- |
 | **Jumpdot Client ID** (`clientId`) | — | Required. Your site's id in the Jumpdot console. Lowercase letters, digits and hyphens (`^[a-z0-9][a-z0-9-]{0,40}$`). |
-| **Default consent state** (`defaultSettings`) | one row, everything `denied` except `security_storage` | One row per group of regions. `Region` is a comma-separated list of ISO 3166-2 codes; leave it blank for the row that applies everywhere else. The seven columns take `granted` or `denied`. |
+| **Default consent state** (`defaultSettings`) | empty (= everything `denied` except `security_storage`, all regions) | One row per group of regions. `Region` is a comma-separated list of ISO 3166-2 codes; leave it blank for the row that applies everywhere else. The seven columns take `granted` or `denied`. |
 | **Wait for update** (`waitForUpdate`) | `500` ms | `wait_for_update` on every default: how long Google tags wait for the replayed decision. |
 | **Redact ads data** (`adsDataRedaction`) | on | `ads_data_redaction`: when `ad_storage` is denied, Google ads tags drop ad-click identifiers and use cookieless domains. |
 | **Pass ad-click information through URLs** (`urlPassthrough`) | on | `url_passthrough`: internal links carry `gclid`, `dclid`, `gclsrc`, `_gl`, `wbraid` while consent is not granted. |

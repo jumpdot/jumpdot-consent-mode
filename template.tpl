@@ -58,7 +58,7 @@ ___TEMPLATE_PARAMETERS___
     "type": "PARAM_TABLE",
     "name": "defaultSettings",
     "displayName": "Default consent state",
-    "help": "One row per group of regions. Leave <strong>Region</strong> blank for the row that applies everywhere else. Regions are ISO 3166-2 codes separated by commas, e.g. <strong>CL, AR, PE</strong> or <strong>US-CA</strong>. Google applies the most specific matching row. These values apply only until the visitor's stored decision (or a new decision in the banner) is replayed.",
+    "help": "Optional. With no rows, the tag sets every consent type to <strong>denied</strong> except <strong>security_storage</strong> for all regions (Google's recommended starting point when the banner is shown everywhere). Add one row per group of regions to change that. Leave <strong>Region</strong> blank for the row that applies everywhere else; regions are ISO 3166-2 codes separated by commas, e.g. <strong>CL, AR, PE</strong> or <strong>US-CA</strong>. Google applies the most specific matching row. These values apply only until the visitor's stored decision (or a new decision in the banner) is replayed.",
     "paramTableColumns": [
       {
         "param": {
@@ -218,91 +218,10 @@ ___TEMPLATE_PARAMETERS___
         "isUnique": false
       }
     ],
-    "defaultValue": [
-      {
-        "type": 3,
-        "mapKey": [
-          {
-            "type": 1,
-            "string": "region"
-          },
-          {
-            "type": 1,
-            "string": "ad_storage"
-          },
-          {
-            "type": 1,
-            "string": "ad_user_data"
-          },
-          {
-            "type": 1,
-            "string": "ad_personalization"
-          },
-          {
-            "type": 1,
-            "string": "analytics_storage"
-          },
-          {
-            "type": 1,
-            "string": "functionality_storage"
-          },
-          {
-            "type": 1,
-            "string": "personalization_storage"
-          },
-          {
-            "type": 1,
-            "string": "security_storage"
-          }
-        ],
-        "mapValue": [
-          {
-            "type": 1,
-            "string": ""
-          },
-          {
-            "type": 1,
-            "string": "denied"
-          },
-          {
-            "type": 1,
-            "string": "denied"
-          },
-          {
-            "type": 1,
-            "string": "denied"
-          },
-          {
-            "type": 1,
-            "string": "denied"
-          },
-          {
-            "type": 1,
-            "string": "denied"
-          },
-          {
-            "type": 1,
-            "string": "denied"
-          },
-          {
-            "type": 1,
-            "string": "granted"
-          }
-        ]
-      }
-    ],
     "newRowButtonText": "Add region",
     "newRowTitle": "New region",
     "editRowTitle": "Edit region",
-    "valueValidators": [
-      {
-        "type": "TABLE_ROW_COUNT",
-        "args": [
-          1
-        ],
-        "errorMessage": "Add at least one row (leave Region blank for the row that applies everywhere)."
-      }
-    ]
+    "valueValidators": []
   },
   {
     "type": "TEXT",
