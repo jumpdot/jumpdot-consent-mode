@@ -1,0 +1,10 @@
+homepage: "https://jumpdot.cl"
+documentation: "https://jumpdot.cl/docs/gtm-template"
+versions:
+  # Each entry is one published version. "sha" must be the FULL 40-character SHA of a
+  # commit in this repository whose template.tpl you want the gallery to serve, newest
+  # first. After the first commit that contains template.tpl, replace the placeholder
+  # below with that commit's SHA and commit this file again (the metadata commit itself
+  # is never listed here).
+  - sha: "REPLACE_WITH_COMMIT_SHA_OF_template.tpl"
+    changeNotes: "Initial release."
