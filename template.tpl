@@ -23,7 +23,7 @@ ___INFO___
     "displayName": "Jumpdot",
     "thumbnail": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABKElEQVR42u2ZTQ6EIAxGKfEUuvVMekbPpFvP4WzGScZRYQyg0NetxPC9fuWvUnej8YjF5BniGlAVKnw7f/kXQO7CvUFYBeJPtVlF4nc1WmXif7Raozyswux/uQAHKM3+xwU4AAAA0B1V6B/OQ5ts8k0/4QAAAAAAAAAAAK6H1N34iMuQz/khxL6PAwAAAAAAAAAAAAAA3hHsReiukxwOAAAAAAAAAAAAANkDaPrploNSlUqcagf4NkxTNlaDA3BleR7aQ4Fn34oogRBZjlVGNodaj7mG2KdPNvYCap+csRS7R/TW2JWaT7ltJu0NnsG466zwmOYodwEAAOA2AKJYv+CAlYTG7LMGbACItuzvOUA0iT8qAdEi3pjjB5F14FKqcBeAUkA43fwCooJFN1BqBU0AAAAASUVORK5CYII="
   },
-  "description": "Sets Google Consent Mode v2 defaults, replays the visitor's stored Jumpdot decision on every page and keeps the seven consent signals in sync with the Jumpdot CMP banner. Fire it on Consent Initialization - All Pages.",
+  "description": "Sets Google Consent Mode v2 defaults by region, replays the visitor's stored Jumpdot decision on every page and loads the Jumpdot CMP, which sends a consent update on every change.",
   "containerContexts": [
     "WEB"
   ]
@@ -1535,6 +1535,7 @@ scenarios:
     assertApi('gtmOnSuccess').wasCalled();
     assertApi('gtmOnFailure').wasCalled();
 setup: |-
+  const JSON = require('JSON');
   const mockData = {
     clientId: 'acme',
     defaultSettings: [
