@@ -6,5 +6,5 @@ versions:
   # first. After the first commit that contains template.tpl, replace the placeholder
   # below with that commit's SHA and commit this file again (the metadata commit itself
   # is never listed here).
-  - sha: "9ec59816147981f85e3a32f51005c944975ec676"
+  - sha: "4ede7459a65cad767021b338b5fd2e251d9b6d7a"
     changeNotes: "Initial release."
